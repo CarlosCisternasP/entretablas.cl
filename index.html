@@ -1,0 +1,2924 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entretablas.cl • Muebles de Madera Noble y a Medida</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1B5E20;
+            --primary-dark: #2E7D32;
+            --primary-light: #4CAF50;
+            --secondary: #388E3C;
+            --accent: #81C784;
+            --accent-dark: #66BB6A;
+            --light: #F1F8E9;
+            --dark: #1B5E20;
+            --gray: #558B2F;
+            --light-gray: #DCEDC8;
+            --card-bg: #ffffff;
+            --wood: #8D6E63;
+            --gradient-primary: linear-gradient(135deg, #1B5E20 0%, #4CAF50 100%);
+            --gradient-accent: linear-gradient(135deg, #81C784 0%, #388E3C 100%);
+            --gradient-nature: linear-gradient(135deg, #2E7D32 0%, #558B2F 100%);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --border-radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 1rem;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-wood {
+            background: var(--wood);
+            color: white;
+        }
+
+        .btn-wood:hover {
+            background: #795548;
+            transform: translateY(-2px);
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-nature);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+
+        .logo:hover .logo-img {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--dark);
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:not(.btn)::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--gradient-nature);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:not(.btn):hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 120px;
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: var(--gradient-nature);
+            opacity: 0.05;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: var(--gradient-accent);
+            opacity: 0.05;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .hero-text h1 span {
+            background: var(--gradient-nature);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .hero-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--light-gray);
+            transform: rotate(3deg);
+            transition: var(--transition);
+        }
+
+        .hero-card:hover {
+            transform: rotate(0deg) translateY(-10px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .card-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .grid-item {
+            height: 80px;
+            background: var(--light-gray);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 0.875rem;
+            transition: var(--transition);
+            padding: 0.5rem;
+            text-align: center;
+        }
+
+        .grid-item:hover {
+            background: var(--primary-light);
+            color: white;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: var(--light);
+        }
+
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid var(--light-gray);
+            border-radius: 30px;
+            color: var(--dark);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--gradient-nature);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            cursor: pointer;
+            height: 300px;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(27, 94, 32, 0.9), transparent);
+            color: white;
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-category {
+            font-size: 0.9rem;
+            background: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-wood {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Categories Section */
+        .categories {
+            background: linear-gradient(135deg, #F1F8E9 0%, #E8F5E9 100%);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--light-gray);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-nature);
+            transition: width 0.3s;
+        }
+
+        .category-card:hover::before {
+            width: 8px;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--light-gray);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .category-card:hover .category-icon {
+            background: var(--gradient-nature);
+            color: white;
+        }
+
+        .category-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .category-card p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .category-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--accent);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Custom Design Section */
+        .custom-design {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+        }
+
+        .custom-design-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .custom-design-text h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .custom-design-text p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .custom-design-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .custom-design-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .custom-design-features li i {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            background: var(--accent);
+            color: white;
+        }
+
+        .custom-design-visual {
+            position: relative;
+        }
+
+        .design-process {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--light-gray);
+        }
+
+        .design-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .design-title {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .design-subtitle {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .design-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .flow-step {
+            text-align: center;
+            flex: 1;
+        }
+
+        .flow-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--light-gray);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .flow-label {
+            font-size: 0.9rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .flow-arrow {
+            color: var(--gray);
+            font-size: 1.5rem;
+        }
+
+        /* Woods Section */
+        .woods {
+            background: var(--light);
+        }
+
+        .woods-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .woods-text h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .woods-text p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .woods-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .woods-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .woods-features li i {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            background: var(--accent);
+            color: white;
+        }
+
+        .woods-visual {
+            position: relative;
+        }
+
+        .woods-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--light-gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .woods-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-nature);
+        }
+
+        .woods-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .woods-stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--light-gray);
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .woods-stat:hover {
+            background: var(--primary-light);
+            color: white;
+        }
+
+        .woods-stat:hover .stat-value,
+        .woods-stat:hover .stat-label {
+            color: white;
+        }
+
+        .woods-stat .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .woods-stat .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            font-weight: 600;
+        }
+
+        .woods-types {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .wood-type {
+            text-align: center;
+            flex: 1;
+        }
+
+        .wood-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-gray);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+            font-size: 1.25rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .wood-type:hover .wood-icon {
+            background: var(--gradient-nature);
+            color: white;
+        }
+
+        .wood-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            font-weight: 600;
+        }
+
+        /* Products Section */
+        .products {
+            background: linear-gradient(135deg, #F1F8E9 0%, #E8F5E9 100%);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--light-gray);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-card.featured {
+            border: 2px solid var(--primary);
+            transform: scale(1.05);
+        }
+
+        .product-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--gradient-nature);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .product-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--light-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-icon {
+            background: var(--gradient-nature);
+            color: white;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-subtitle {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .price-amount {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .price-period {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .product-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        .product-features li i {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            background: var(--accent);
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .product-actions {
+            text-align: center;
+        }
+
+        .payment-methods {
+            margin-bottom: 4rem;
+        }
+
+        .payment-table {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+        }
+
+        .table-header {
+            background: var(--gradient-nature);
+            color: white;
+            padding: 1.5rem 2rem;
+        }
+
+        .table-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .table-subtitle {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .table-content {
+            padding: 0;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 2fr 1fr;
+            padding: 1.25rem 2rem;
+            border-bottom: 1px solid var(--light-gray);
+            align-items: center;
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .table-row.header {
+            background: var(--light-gray);
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .table-cell {
+            padding: 0.5rem;
+        }
+
+        .guarantee-text {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+        }
+
+        .guarantee-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .guarantee-text p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--gradient-nature);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .cta::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .cta .section-title {
+            background: linear-gradient(135deg, #ffffff 0%, #C8E6C9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta .section-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta .btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        .cta .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 3px;
+            background: var(--gradient-nature);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #C8E6C9;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: white;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background: var(--gradient-nature);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #C8E6C9;
+            font-size: 0.9rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) scale(0.95); }
+            50% { transform: translateY(-10px) scale(0.95); }
+            100% { transform: translateY(0px) scale(0.95); }
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1) translateY(0);
+            animation: none;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            color: var(--dark);
+            transform: rotate(90deg);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-subtitle {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: white;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.1);
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-footer {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .form-note {
+            font-size: 0.875rem;
+            color: var(--gray);
+            margin-top: 1rem;
+        }
+
+        /* Gallery Modal */
+        .gallery-modal .modal-content {
+            max-width: 900px;
+            padding: 0;
+            background: transparent;
+        }
+
+        .gallery-modal-content {
+            position: relative;
+        }
+
+        .gallery-modal-img {
+            width: 100%;
+            border-radius: var(--border-radius);
+            max-height: 70vh;
+            object-fit: contain;
+            background: white;
+        }
+
+        .gallery-modal-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(27, 94, 32, 0.9), transparent);
+            color: white;
+            padding: 2rem;
+            border-bottom-left-radius: var(--border-radius);
+            border-bottom-right-radius: var(--border-radius);
+        }
+
+        .gallery-modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+        }
+
+        .gallery-nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .gallery-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Payment Modal */
+        .payment-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .payment-option {
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .payment-option:hover {
+            border-color: var(--primary);
+            background: var(--light);
+        }
+
+        .payment-option.selected {
+            border-color: var(--primary);
+            background: var(--light);
+        }
+
+        .payment-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .payment-details {
+            display: none;
+        }
+
+        .payment-details.active {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content,
+            .footer-content,
+            .custom-design-content,
+            .woods-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+            
+            .product-card.featured {
+                transform: scale(1);
+            }
+            
+            .product-card.featured:hover {
+                transform: scale(1) translateY(-10px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 80px 0;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .design-flow {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+            
+            .woods-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .woods-types {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .modal-content {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .table-row {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+                text-align: center;
+            }
+            
+            .table-row.header {
+                display: none;
+            }
+            
+            .table-cell::before {
+                content: attr(data-label);
+                font-weight: 600;
+                display: block;
+                margin-bottom: 0.5rem;
+                color: var(--primary);
+            }
+            
+            .payment-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .form-title {
+                font-size: 2rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <div class="logo-img" style="background: var(--gradient-nature); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    Entretablas.cl
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#gallery">Galería</a></li>
+                    <li><a href="#categories">Categorías</a></li>
+                    <li><a href="#custom-design">Diseño a Medida</a></li>
+                    <li><a href="#products">Productos</a></li>
+                    <li><a href="#" class="btn btn-primary contact-btn">Cotizar Mueble</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Muebles de <span>Madera Noble</span> y a Medida</h1>
+                    <p>Inspirados en los bosques del sur de Chile. Creemos en la belleza natural de la madera y en piezas que perduran generaciones.</p>
+                    <div class="hero-buttons">
+                        <a href="#gallery" class="btn btn-primary">
+                            <i class="fas fa-images"></i>
+                            Ver Galería
+                        </a>
+                        <a href="#" class="btn btn-secondary contact-btn">
+                            <i class="fas fa-pencil-ruler"></i>
+                            Diseño Personalizado
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-card">
+                        <div class="card-header">
+                            <div class="card-title">Artesanía Chilena</div>
+                            <div class="card-badge">Hecho en Chile</div>
+                        </div>
+                        <div class="card-stats">
+                            <div class="stat">
+                                <div class="stat-value">100%</div>
+                                <div class="stat-label">Madera Natural</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">15+</div>
+                                <div class="stat-label">Años Garantía</div>
+                            </div>
+                        </div>
+                        <div class="card-grid">
+                            <div class="grid-item">Roble</div>
+                            <div class="grid-item">Nogal</div>
+                            <div class="grid-item">Raulí</div>
+                            <div class="grid-item">Cerezo</div>
+                            <div class="grid-item">Ciprés</div>
+                            <div class="grid-item">Alerce</div>
+                            <div class="grid-item">Teca</div>
+                            <div class="grid-item">Mañío</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section gallery">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Galería de Nuestros Trabajos</h2>
+                <p class="section-subtitle mx-auto">Explora nuestra colección de muebles elaborados con maderas nobles chilenas</p>
+            </div>
+            
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="living">Living</button>
+                <button class="filter-btn" data-filter="comedor">Comedor</button>
+                <button class="filter-btn" data-filter="dormitorio">Dormitorio</button>
+                <button class="filter-btn" data-filter="oficina">Oficina</button>
+                <button class="filter-btn" data-filter="exterior">Exterior</button>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- Living -->
+                <div class="gallery-item" data-category="living" data-index="1">
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Sofá de Roble">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Living</span>
+                        <h3 class="gallery-title">Sofá Chesterfield</h3>
+                        <p class="gallery-wood">Roble Macizo • Cuero Natural</p>
+                    </div>
+                </div>
+                
+                <!-- Comedor -->
+                <div class="gallery-item" data-category="comedor" data-index="2">
+                    <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80" alt="Mesa de Comedor">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Comedor</span>
+                        <h3 class="gallery-title">Mesa Extensible</h3>
+                        <p class="gallery-wood">Nogal Americano • 8-10 Personas</p>
+                    </div>
+                </div>
+                
+                <!-- Dormitorio -->
+                <div class="gallery-item" data-category="dormitorio" data-index="3">
+                    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Cama King Size">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Dormitorio</span>
+                        <h3 class="gallery-title">Cama King Size</h3>
+                        <p class="gallery-wood">Raulí Chileno • Cabecera Tapizada</p>
+                    </div>
+                </div>
+                
+                <!-- Oficina -->
+                <div class="gallery-item" data-category="oficina" data-index="4">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1258&q=80" alt="Escritorio Ejecutivo">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Oficina</span>
+                        <h3 class="gallery-title">Escritorio Ejecutivo</h3>
+                        <p class="gallery-wood">Cerezo • Diseño Moderno</p>
+                    </div>
+                </div>
+                
+                <!-- Exterior -->
+                <div class="gallery-item" data-category="exterior" data-index="5">
+                    <img src="https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Muebles de Terraza">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Exterior</span>
+                        <h3 class="gallery-title">Juego de Terraza</h3>
+                        <p class="gallery-wood">Teca • Resistente a la Intemperie</p>
+                    </div>
+                </div>
+                
+                <!-- Living -->
+                <div class="gallery-item" data-category="living" data-index="6">
+                    <img src="https://images.unsplash.com/photo-1567018001418-6d5c0c246b02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1287&q=80" alt="Estantería">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Living</span>
+                        <h3 class="gallery-title">Estantería Flotante</h3>
+                        <p class="gallery-wood">Ciprés • Diseño Minimalista</p>
+                    </div>
+                </div>
+                
+                <!-- Comedor -->
+                <div class="gallery-item" data-category="comedor" data-index="7">
+                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80" alt="Buffet">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Comedor</span>
+                        <h3 class="gallery-title">Buffet y Vitrina</h3>
+                        <p class="gallery-wood">Nogal y Vidrio • Iluminación LED</p>
+                    </div>
+                </div>
+                
+                <!-- Dormitorio -->
+                <div class="gallery-item" data-category="dormitorio" data-index="8">
+                    <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1331&q=80" alt="Cómoda">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Dormitorio</span>
+                        <h3 class="gallery-title">Cómoda de 6 Cajones</h3>
+                        <p class="gallery-wood">Alerce • Acabado Natural</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="#" class="btn btn-primary contact-btn">
+                    <i class="fas fa-camera"></i>
+                    Ver Más Proyectos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="section categories">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Categorías de Muebles</h2>
+                <p class="section-subtitle mx-auto">Explora nuestra colección de muebles elaborados con maderas nobles chilenas</p>
+            </div>
+            
+            <div class="categories-grid">
+                <div class="category-card" data-category="living">
+                    <div class="category-icon">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <h3>Muebles de Living</h3>
+                    <p>Sofás, mesas de centro, estanterías y librerías que transforman tu espacio en un ambiente acogedor y elegante.</p>
+                    <span class="category-tag">Más vendido</span>
+                </div>
+                
+                <div class="category-card" data-category="comedor">
+                    <div class="category-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Muebles de Comedor</h3>
+                    <p>Mesas extensibles, sillas, buffets y vitrinas perfectas para compartir momentos especiales en familia.</p>
+                    <span class="category-tag">Personalizable</span>
+                </div>
+                
+                <div class="category-card" data-category="dormitorio">
+                    <div class="category-icon">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <h3>Muebles de Dormitorio</h3>
+                    <p>Camas, mesitas de noche, cómodas y vestidores que crean un refugio de descanso y tranquilidad.</p>
+                    <span class="category-tag">Hecho a medida</span>
+                </div>
+                
+                <div class="category-card" data-category="oficina">
+                    <div class="category-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Muebles de Oficina</h3>
+                    <p>Escritorios ejecutivos, bibliotecas y sillas ergonómicas que combinan productividad y elegancia.</p>
+                    <span class="category-tag">Profesional</span>
+                </div>
+                
+                <div class="category-card" data-category="exterior">
+                    <div class="category-icon">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <h3>Muebles Exterior</h3>
+                    <p>Mesas de terraza, bancas y juegos de jardín resistentes a la intemperie, ideales para espacios abiertos.</p>
+                    <span class="category-tag">Resistente</span>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-ruler-combined"></i>
+                    </div>
+                    <h3>Proyectos Especiales</h3>
+                    <p>Diseños personalizados para espacios únicos. Creamos exactamente lo que imaginas.</p>
+                    <span class="category-tag">A medida</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Design Section -->
+    <section id="custom-design" class="section custom-design">
+        <div class="container">
+            <div class="custom-design-content">
+                <div class="custom-design-text">
+                    <h2>Diseño y Fabricación a Medida</h2>
+                    <p>¿Tienes un espacio único o necesidades específicas? Creamos muebles perfectamente adaptados a tus medidas, estilo y requerimientos funcionales.</p>
+                    
+                    <ul class="custom-design-features">
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Consulta inicial gratuita en taller o por videollamada</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Diseño personalizado en 3D antes de fabricar</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Selección de maderas nobles según tu preferencia</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Acabados personalizados (natural, encerado, lacado)</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Seguimiento del proceso de fabricación</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#" class="btn btn-primary contact-btn">
+                        <i class="fas fa-calendar-check"></i>
+                        Solicitar Diseño Personalizado
+                    </a>
+                </div>
+                
+                <div class="custom-design-visual">
+                    <div class="design-process">
+                        <div class="design-header">
+                            <div class="design-title">Proceso de Creación</div>
+                            <div class="design-subtitle">De tu idea a la realidad en 5 pasos</div>
+                        </div>
+                        
+                        <div class="design-flow">
+                            <div class="flow-step">
+                                <div class="flow-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <div class="flow-label">Consulta</div>
+                            </div>
+                            
+                            <div class="flow-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                            
+                            <div class="flow-step">
+                                <div class="flow-icon">
+                                    <i class="fas fa-pencil-ruler"></i>
+                                </div>
+                                <div class="flow-label">Diseño 3D</div>
+                            </div>
+                            
+                            <div class="flow-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                            
+                            <div class="flow-step">
+                                <div class="flow-icon">
+                                    <i class="fas fa-hammer"></i>
+                                </div>
+                                <div class="flow-label">Fabricación</div>
+                            </div>
+                        </div>
+                        
+                        <div class="design-flow">
+                            <div class="flow-step">
+                                <div class="flow-icon">
+                                    <i class="fas fa-paint-roller"></i>
+                                </div>
+                                <div class="flow-label">Acabado</div>
+                            </div>
+                            
+                            <div class="flow-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                            
+                            <div class="flow-step">
+                                <div class="flow-icon">
+                                    <i class="fas fa-truck"></i>
+                                </div>
+                                <div class="flow-label">Entrega</div>
+                            </div>
+                            
+                            <div class="flow-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                            
+                            <div class="flow-step">
+                                <div class="flow-icon">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <div class="flow-label">Instalación</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Woods Section -->
+    <section id="woods" class="section woods">
+        <div class="container">
+            <div class="woods-content">
+                <div class="woods-visual">
+                    <div class="woods-card">
+                        <div class="woods-stats">
+                            <div class="woods-stat">
+                                <div class="stat-value">30+</div>
+                                <div class="stat-label">Años Experiencia</div>
+                            </div>
+                            <div class="woods-stat">
+                                <div class="stat-value">15</div>
+                                <div class="stat-label">Años Garantía</div>
+                            </div>
+                            <div class="woods-stat">
+                                <div class="stat-value">100%</div>
+                                <div class="stat-label">Artesanal</div>
+                            </div>
+                            <div class="woods-stat">
+                                <div class="stat-value">500+</div>
+                                <div class="stat-label">Clientes Satisfechos</div>
+                            </div>
+                        </div>
+                        
+                        <div class="woods-types">
+                            <div class="wood-type">
+                                <div class="wood-icon">
+                                    <i class="fas fa-tree"></i>
+                                </div>
+                                <div class="wood-label">Roble</div>
+                            </div>
+                            <div class="wood-type">
+                                <div class="wood-icon">
+                                    <i class="fas fa-tree"></i>
+                                </div>
+                                <div class="wood-label">Nogal</div>
+                            </div>
+                            <div class="wood-type">
+                                <div class="wood-icon">
+                                    <i class="fas fa-tree"></i>
+                                </div>
+                                <div class="wood-label">Raulí</div>
+                            </div>
+                            <div class="wood-type">
+                                <div class="wood-icon">
+                                    <i class="fas fa-tree"></i>
+                                </div>
+                                <div class="wood-label">Cerezo</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="woods-text">
+                    <h2>Maderas Nobles Chilenas</h2>
+                    <p>Trabajamos exclusivamente con maderas nobles de primera calidad, seleccionadas por su durabilidad, belleza natural y características únicas.</p>
+                    
+                    <ul class="woods-features">
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Maderas 100% chilenas de bosques con manejo sustentable</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Secado natural que evita grietas y deformaciones</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Vetas naturales únicas en cada pieza</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Resistentes a la humedad y cambios de temperatura</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Mejoran con el tiempo, desarrollando una pátina única</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#" class="btn btn-primary contact-btn">
+                        <i class="fas fa-seedling"></i>
+                        Conocer Nuestras Maderas
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="section products">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Productos Destacados</h2>
+                <p class="section-subtitle mx-auto">Nuestras piezas más solicitadas, disponibles para entrega inmediata</p>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-badge">Disponible</div>
+                    <div class="product-header">
+                        <div class="product-icon">
+                            <i class="fas fa-couch"></i>
+                        </div>
+                        <div class="product-title">Sofá Chesterfield</div>
+                        <div class="product-subtitle">Madera de Roble • Cuero Natural</div>
+                    </div>
+                    <div class="product-price">
+                        <div class="price-amount">$890.000</div>
+                        <div class="price-period">IVA incluido</div>
+                    </div>
+                    <ul class="product-features">
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Estructura en roble macizo</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Tapizado en cuero vacuno natural</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Dimensiones: 220x95x85 cm</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Entrega en 15 días</span>
+                        </li>
+                    </ul>
+                    <div class="product-actions">
+                        <a href="#" class="btn btn-primary buy-btn" data-product="Sofá Chesterfield">
+                            <i class="fas fa-shopping-cart"></i>
+                            Comprar Ahora
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="product-card featured">
+                    <div class="product-badge">Más Vendido</div>
+                    <div class="product-header">
+                        <div class="product-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="product-title">Mesa de Comedor</div>
+                        <div class="product-subtitle">Madera de Nogal • 8 Personas</div>
+                    </div>
+                    <div class="product-price">
+                        <div class="price-amount">$1.250.000</div>
+                        <div class="price-period">IVA incluido</div>
+                    </div>
+                    <ul class="product-features">
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Nogal macizo con veta natural</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Extensible hasta 10 personas</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Dimensiones: 220x100x75 cm</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Entrega en 20 días</span>
+                        </li>
+                    </ul>
+                    <div class="product-actions">
+                        <a href="#" class="btn btn-primary buy-btn" data-product="Mesa de Comedor">
+                            <i class="fas fa-shopping-cart"></i>
+                            Comprar Ahora
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-badge">Personalizable</div>
+                    <div class="product-header">
+                        <div class="product-icon">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <div class="product-title">Cama King Size</div>
+                        <div class="product-subtitle">Madera de Raulí • Diseño Moderno</div>
+                    </div>
+                    <div class="product-price">
+                        <div class="price-amount">$1.150.000</div>
+                        <div class="price-period">IVA incluido</div>
+                    </div>
+                    <ul class="product-features">
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Cabecera tapizada opcional</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Estructura reforzada</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Dimensiones: 200x180 cm</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Entrega en 25 días</span>
+                        </li>
+                    </ul>
+                    <div class="product-actions">
+                        <a href="#" class="btn btn-primary buy-btn" data-product="Cama King Size">
+                            <i class="fas fa-shopping-cart"></i>
+                            Comprar Ahora
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Métodos de Pago -->
+            <div class="payment-methods">
+                <div class="payment-table">
+                    <div class="table-header">
+                        <div class="table-title">💳 Métodos de Pago</div>
+                        <div class="table-subtitle">Paga de forma segura con nuestra plataforma certificada</div>
+                    </div>
+                    <div class="table-content">
+                        <div class="table-row header">
+                            <div class="table-cell" data-label="Método">Método de Pago</div>
+                            <div class="table-cell" data-label="Características">Características</div>
+                            <div class="table-cell" data-label="Cuotas">Cuotas Disponibles</div>
+                            <div class="table-cell" data-label="Seguridad">Seguridad</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Método">Webpay (Transbank)</div>
+                            <div class="table-cell" data-label="Características">Pago con tarjeta débito/crédito</div>
+                            <div class="table-cell" data-label="Cuotas">Hasta 12 sin interés</div>
+                            <div class="table-cell" data-label="Seguridad">Certificado PCI DSS</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Método">Transferencia Bancaria</div>
+                            <div class="table-cell" data-label="Características">Pago directo desde tu banco</div>
+                            <div class="table-cell" data-label="Cuotas">Pago total</div>
+                            <div class="table-cell" data-label="Seguridad">Cifrado SSL</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Método">MercadoPago</div>
+                            <div class="table-cell" data-label="Características">Pago rápido y seguro</div>
+                            <div class="table-cell" data-label="Cuotas">Hasta 6 sin interés</div>
+                            <div class="table-cell" data-label="Seguridad">Protección al comprador</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Método">Pago Contra Entrega</div>
+                            <div class="table-cell" data-label="Características">Solo RM y Valparaíso</div>
+                            <div class="table-cell" data-label="Cuotas">Pago total</div>
+                            <div class="table-cell" data-label="Seguridad">En persona</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Garantía -->
+                <div class="guarantee-text">
+                    <h3>🔒 Garantía y Políticas</h3>
+                    <p>Todos nuestros muebles incluyen garantía de 15 años contra defectos de fabricación. Ofrecemos devolución en 30 días si el producto no cumple con lo descrito. Envío gratis en RM por compras sobre $500.000. Para proyectos a medida, solicitamos un 30% de anticipo para iniciar la fabricación.</p>
+                    <p>Nuestros productos están certificados con sello de calidad y origen sustentable. Cada pieza incluye certificado de autenticidad de la madera.</p>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 3rem;">
+                <a href="#" class="btn btn-primary contact-btn">
+                    <i class="fas fa-images"></i>
+                    Ver Catálogo Completo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="section-title">¿Listo para tener tu mueble de madera noble?</h2>
+                <p class="section-subtitle mx-auto">Transforma tu espacio con piezas únicas que perdurarán generaciones</p>
+                <a href="#" class="btn contact-btn">
+                    <i class="fas fa-calendar-alt"></i>
+                    Solicitar Cotización Personalizada
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <a href="#" class="logo" style="color: white; margin-bottom: 1rem; display: inline-block;">
+                        <div class="logo-img" style="background: var(--gradient-nature); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                            <i class="fas fa-tree"></i>
+                        </div>
+                        Entretablas.cl
+                    </a>
+                    <p>Especialistas en muebles de madera noble y diseño a medida. Inspirados en los bosques del sur de Chile, creemos en la belleza natural y sostenibilidad.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Categorías</h3>
+                    <ul class="footer-links">
+                        <li><a href="#gallery">Galería</a></li>
+                        <li><a href="#categories">Living</a></li>
+                        <li><a href="#categories">Comedor</a></li>
+                        <li><a href="#categories">Dormitorio</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Servicios</h3>
+                    <ul class="footer-links">
+                        <li><a href="#custom-design">Diseño a Medida</a></li>
+                        <li><a href="#woods">Maderas Nobles</a></li>
+                        <li><a href="#products">Catálogo</a></li>
+                        <li><a href="#" class="contact-btn">Cotización</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contacto@entretablas.cl">contacto@entretablas.cl</a></li>
+                        <li><a href="tel:+56912345678">+56 9 1234 5678</a></li>
+                        <li><a href="#">Taller: Providencia, Santiago</a></li>
+                        <li><a href="#" class="contact-btn">Agendar Visita</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Entretablas.cl • Muebles de Madera Noble y a Medida. Inspirados en el sur de Chile.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Gallery Modal -->
+    <div class="modal gallery-modal" id="galleryModal">
+        <div class="modal-content">
+            <button class="modal-close" id="galleryClose">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="gallery-modal-content">
+                <img class="gallery-modal-img" id="modalImage" src="" alt="">
+                <div class="gallery-modal-info">
+                    <span class="gallery-category" id="modalCategory">Living</span>
+                    <h3 class="gallery-title" id="modalTitle">Sofá Chesterfield</h3>
+                    <p class="gallery-wood" id="modalWood">Roble Macizo • Cuero Natural</p>
+                </div>
+                
+                <div class="gallery-modal-nav">
+                    <button class="gallery-nav-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="gallery-nav-btn" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Contacto para Diseño a Medida -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="form-header">
+                <h2 class="form-title">Diseño a Medida</h2>
+                <p class="form-subtitle">Cuéntanos tu idea y crearemos el mueble perfecto para ti</p>
+            </div>
+
+            <form id="contactForm">
+                <div class="form-group">
+                    <label class="form-label" for="clientName">Nombre Completo *</label>
+                    <input type="text" class="form-control" id="clientName" name="clientName" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="clientEmail">Correo Electrónico *</label>
+                        <input type="email" class="form-control" id="clientEmail" name="clientEmail" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="clientPhone">Teléfono *</label>
+                        <input type="tel" class="form-control" id="clientPhone" name="clientPhone" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="furnitureType">Tipo de Mueble *</label>
+                    <select class="form-control form-select" id="furnitureType" name="furnitureType" required>
+                        <option value="">Seleccionar...</option>
+                        <option value="sofa">Sofá o sillón</option>
+                        <option value="mesa">Mesa de comedor</option>
+                        <option value="cama">Cama</option>
+                        <option value="estanteria">Estantería o librería</option>
+                        <option value="escritorio">Escritorio</option>
+                        <option value="otro">Otro mueble</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="woodType">Tipo de Madera Preferida *</label>
+                    <select class="form-control form-select" id="woodType" name="woodType" required>
+                        <option value="">Seleccionar...</option>
+                        <option value="roble">Roble</option>
+                        <option value="nogal">Nogal</option>
+                        <option value="rauli">Raulí</option>
+                        <option value="cerezo">Cerezo</option>
+                        <option value="teca">Teca</option>
+                        <option value="no-se">No sé, necesito asesoría</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="dimensions">Dimensiones (aproximadas)</label>
+                        <input type="text" class="form-control" id="dimensions" name="dimensions" placeholder="Ej: 200x100x75 cm">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="budget">Presupuesto Aproximado *</label>
+                        <select class="form-control form-select" id="budget" name="budget" required>
+                            <option value="">Seleccionar rango...</option>
+                            <option value="300-500">$300.000 - $500.000</option>
+                            <option value="500-800">$500.000 - $800.000</option>
+                            <option value="800-1200">$800.000 - $1.200.000</option>
+                            <option value="1200-2000">$1.200.000 - $2.000.000</option>
+                            <option value="2000+">Más de $2.000.000</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="description">Describe tu proyecto *</label>
+                    <textarea class="form-control" id="description" name="description" placeholder="Describe el mueble que necesitas, estilo preferido, colores, espacio donde irá, etc." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="referenceImages">¿Tienes imágenes de referencia?</label>
+                    <input type="text" class="form-control" id="referenceImages" name="referenceImages" placeholder="Puedes compartir enlaces a imágenes (Pinterest, Instagram, etc.)">
+                </div>
+
+                <div class="form-footer">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-paper-plane"></i>
+                        Enviar Solicitud de Cotización
+                    </button>
+                    <p class="form-note">
+                        * Campos obligatorios. Nos contactaremos dentro de 24 horas con una propuesta inicial.
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Pago -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+            <button class="modal-close" id="paymentClose">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="form-header">
+                <h2 class="form-title">Proceso de Compra</h2>
+                <p class="form-subtitle" id="paymentProduct">Completa tus datos para finalizar la compra</p>
+            </div>
+
+            <form id="paymentForm">
+                <div class="form-group">
+                    <label class="form-label" for="paymentName">Nombre Completo *</label>
+                    <input type="text" class="form-control" id="paymentName" name="paymentName" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="paymentRut">RUT *</label>
+                        <input type="text" class="form-control" id="paymentRut" name="paymentRut" placeholder="12.345.678-9" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="paymentEmail">Correo Electrónico *</label>
+                        <input type="email" class="form-control" id="paymentEmail" name="paymentEmail" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="paymentPhone">Teléfono *</label>
+                        <input type="tel" class="form-control" id="paymentPhone" name="paymentPhone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="paymentAddress">Dirección de Entrega *</label>
+                        <input type="text" class="form-control" id="paymentAddress" name="paymentAddress" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Método de Pago *</label>
+                    <div class="payment-options">
+                        <div class="payment-option" data-method="webpay">
+                            <div class="payment-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <div>Webpay</div>
+                            <small>Tarjeta débito/crédito</small>
+                        </div>
+                        <div class="payment-option" data-method="transfer">
+                            <div class="payment-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div>Transferencia</div>
+                            <small>Bancaria</small>
+                        </div>
+                    </div>
+                    <input type="hidden" id="paymentMethod" name="paymentMethod" required>
+                </div>
+
+                <div class="payment-details" id="webpayDetails">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="cardNumber">Número de Tarjeta</label>
+                            <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="cardExpiry">Fecha Expiración</label>
+                            <input type="text" class="form-control" id="cardExpiry" placeholder="MM/AA">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="cardCVC">CVC</label>
+                            <input type="text" class="form-control" id="cardCVC" placeholder="123">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="installments">Cuotas</label>
+                            <select class="form-control form-select" id="installments">
+                                <option value="1">1 cuota</option>
+                                <option value="3">3 cuotas sin interés</option>
+                                <option value="6">6 cuotas sin interés</option>
+                                <option value="12">12 cuotas</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-check" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <input type="checkbox" id="terms" name="terms" required style="width: auto;">
+                        <label for="terms" style="font-size: 0.9rem;">
+                            Acepto los <a href="#" style="color: var(--primary);">términos y condiciones</a> y 
+                            <a href="#" style="color: var(--primary);">política de privacidad</a> *
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-footer">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-lock"></i>
+                        Finalizar Compra
+                    </button>
+                    <p class="form-note">
+                        * Tu información está protegida con encriptación SSL. No almacenamos datos de tarjetas.
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmación -->
+    <div class="modal" id="confirmationModal">
+        <div class="modal-content">
+            <button class="modal-close" id="confirmationClose">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="form-header">
+                <h2 class="form-title">¡Gracias por tu compra!</h2>
+                <p class="form-subtitle">Hemos recibido tu pedido y nos contactaremos pronto para coordinar la entrega.</p>
+            </div>
+
+            <div class="text-center" style="margin-top: 2rem;">
+                <button class="btn btn-primary" id="modalOk">
+                    <i class="fas fa-check"></i>
+                    Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (!this.classList.contains('contact-btn') && !this.classList.contains('buy-btn')) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (window.innerWidth <= 768) {
+                            document.querySelector('.nav-links').style.display = 'none';
+                        }
+                    }
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            }
+        });
+
+        // Gallery Filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                
+                galleryItems.forEach(item => {
+                    const category = item.getAttribute('data-category');
+                    
+                    if (filter === 'all' || filter === category) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        }, 10);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Gallery Modal
+        const galleryModal = document.getElementById('galleryModal');
+        const galleryClose = document.getElementById('galleryClose');
+        const modalImage = document.getElementById('modalImage');
+        const modalCategory = document.getElementById('modalCategory');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalWood = document.getElementById('modalWood');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        let currentGalleryIndex = 0;
+        const galleryImages = Array.from(galleryItems);
+
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', function() {
+                currentGalleryIndex = index;
+                updateGalleryModal();
+                galleryModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        function updateGalleryModal() {
+            const item = galleryImages[currentGalleryIndex];
+            const img = item.querySelector('img');
+            const category = item.querySelector('.gallery-category').textContent;
+            const title = item.querySelector('.gallery-title').textContent;
+            const wood = item.querySelector('.gallery-wood').textContent;
+            
+            modalImage.src = img.src;
+            modalImage.alt = img.alt;
+            modalCategory.textContent = category;
+            modalTitle.textContent = title;
+            modalWood.textContent = wood;
+        }
+
+        galleryClose.addEventListener('click', () => {
+            galleryModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentGalleryIndex = (currentGalleryIndex - 1 + galleryImages.length) % galleryImages.length;
+            updateGalleryModal();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentGalleryIndex = (currentGalleryIndex + 1) % galleryImages.length;
+            updateGalleryModal();
+        });
+
+        // Close gallery modal when clicking outside
+        galleryModal.addEventListener('click', (e) => {
+            if (e.target === galleryModal) {
+                galleryModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Animation on scroll for elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        // Observe category cards
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Observe gallery items
+        galleryItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(item);
+        });
+
+        // Modal functionality
+        const contactModal = document.getElementById('contactModal');
+        const paymentModal = document.getElementById('paymentModal');
+        const confirmationModal = document.getElementById('confirmationModal');
+        const modalClose = document.getElementById('modalClose');
+        const paymentClose = document.getElementById('paymentClose');
+        const confirmationClose = document.getElementById('confirmationClose');
+        const modalOk = document.getElementById('modalOk');
+        const contactForm = document.getElementById('contactForm');
+        const paymentForm = document.getElementById('paymentForm');
+        const contactBtns = document.querySelectorAll('.contact-btn');
+        const buyBtns = document.querySelectorAll('.buy-btn');
+
+        // Open contact modal
+        contactBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                contactModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Open payment modal for product purchase
+        buyBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const productName = btn.getAttribute('data-product');
+                document.getElementById('paymentProduct').textContent = `Completa tus datos para comprar: ${productName}`;
+                paymentModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Close modals
+        modalClose.addEventListener('click', () => {
+            contactModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        paymentClose.addEventListener('click', () => {
+            paymentModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        confirmationClose.addEventListener('click', () => {
+            confirmationModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        modalOk.addEventListener('click', () => {
+            confirmationModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close modals when clicking outside
+        contactModal.addEventListener('click', (e) => {
+            if (e.target === contactModal) {
+                contactModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        paymentModal.addEventListener('click', (e) => {
+            if (e.target === paymentModal) {
+                paymentModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        confirmationModal.addEventListener('click', (e) => {
+            if (e.target === confirmationModal) {
+                confirmationModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close modals with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                contactModal.classList.remove('active');
+                paymentModal.classList.remove('active');
+                confirmationModal.classList.remove('active');
+                galleryModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Payment method selection
+        document.querySelectorAll('.payment-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options
+                document.querySelectorAll('.payment-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked option
+                this.classList.add('selected');
+                
+                // Set the payment method value
+                const method = this.getAttribute('data-method');
+                document.getElementById('paymentMethod').value = method;
+                
+                // Show/hide payment details
+                document.getElementById('webpayDetails').classList.remove('active');
+                
+                if (method === 'webpay') {
+                    document.getElementById('webpayDetails').classList.add('active');
+                }
+            });
+        });
+
+        // Form submission - Contact Form
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Basic form validation
+            const requiredFields = contactForm.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.style.borderColor = '#e53e3e';
+                } else {
+                    field.style.borderColor = '';
+                }
+            });
+
+            if (!isValid) {
+                alert('Por favor, completa todos los campos obligatorios.');
+                return;
+            }
+
+            // Mostrar estado de envío
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            submitBtn.disabled = true;
+
+            try {
+                // Simular envío a servidor
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Éxito - mostrar confirmación
+                contactModal.classList.remove('active');
+                confirmationModal.classList.add('active');
+                contactForm.reset();
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error al enviar el formulario. Por favor, intenta nuevamente.');
+            } finally {
+                // Restaurar botón
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Form submission - Payment Form
+        paymentForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Basic form validation
+            const requiredFields = paymentForm.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.style.borderColor = '#e53e3e';
+                } else {
+                    field.style.borderColor = '';
+                }
+            });
+
+            // Validar método de pago seleccionado
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            if (!paymentMethod) {
+                isValid = false;
+                alert('Por favor, selecciona un método de pago.');
+            }
+
+            if (!isValid) {
+                alert('Por favor, completa todos los campos obligatorios.');
+                return;
+            }
+
+            // Mostrar estado de envío
+            const submitBtn = paymentForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando pago...';
+            submitBtn.disabled = true;
+
+            try {
+                // Simular procesamiento de pago
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // Éxito - mostrar confirmación
+                paymentModal.classList.remove('active');
+                confirmationModal.classList.add('active');
+                paymentForm.reset();
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error al procesar el pago. Por favor, intenta nuevamente.');
+            } finally {
+                // Restaurar botón
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // RUT formatting for payment form
+        const paymentRut = document.getElementById('paymentRut');
+        if (paymentRut) {
+            paymentRut.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\./g, '').replace('-', '');
+                
+                // Limitar a 8 dígitos + 1 dígito verificador
+                if (value.length > 9) {
+                    value = value.substring(0, 9);
+                }
+                
+                // Formatear solo si tiene al menos 2 dígitos
+                if (value.length > 1) {
+                    // Separar dígito verificador
+                    const dv = value.slice(-1);
+                    const numbers = value.slice(0, -1);
+                    
+                    // Aplicar formato XX.XXX.XXX
+                    let formatted = numbers;
+                    if (numbers.length > 6) {
+                        formatted = numbers.slice(0, 2) + '.' + numbers.slice(2, 5) + '.' + numbers.slice(5);
+                    } else if (numbers.length > 3) {
+                        formatted = numbers.slice(0, 2) + '.' + numbers.slice(2);
+                    }
+                    
+                    value = formatted + '-' + dv;
+                }
+                
+                e.target.value = value;
+            });
+        }
+
+        // Initialize first payment option as selected
+        document.querySelector('.payment-option').click();
+    </script>
+</body>
+</html>
